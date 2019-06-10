@@ -1,85 +1,29 @@
 <template>
-  <div class="top">
-    <center> 
-      <ul>
-        <li><router-link to='/hosts' tag='a'>主机管理</router-link></li>
-        <li><router-link to='/crontab' tag='a'>任务计划</router-link></li>
-        <li> <router-link to='/kubernetes' tag='a'>Kubernetes</router-link></li>
-        <li><router-link to='/info' tag='a'>Info</router-link></li>
-        <li><router-link to='/all' tag='a'>All</router-link></li>
-        <li>
-            <a href="#">一级菜单</a>
-            <ul>
-              <li><a href="#">二级菜单</a></li>
-              <li><a href="#">二级菜单</a></li>
-            </ul>
-        </li>        
-     </ul>
-    </center>      
-  </div>
+<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+  <el-menu-item index="1"><router-link to='/hosts' tag='a'>主机管理</router-link></el-menu-item>
+  <el-submenu index="2">
+    <template slot="title">任务计划</router-link></template>
+    <el-menu-item index="2-1"><router-link to='/crontab'>用户计划</router-link></el-menu-item>
+    <el-menu-item index="2-2">全局crontab</el-menu-item>
+  </el-submenu>
+  <el-menu-item index="3" disabled>消息中心</el-menu-item>
+  <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+</el-menu>  
 </template>
 
-<script >
-export default {
-  data() {
-    return {
-      homeLink:"/"
+
+<script>
+  export default {
+    data() {
+      return {
+        activeIndex: '1',
+        activeIndex2: '1'
+      };
+    },
+    methods: {
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+      }
     }
   }
-}
 </script>
-
-<style scope>
-        .top{
-            /* 设置宽度高度背景颜色 */
-            height: 50px;
-            width:100%;
-            background:rgb(189, 181, 181);
-            position: fixed; /*固定在顶部*/
-            top: 0;/*离顶部的距离为0*/
-        }
-        .top ul{
-            /* 清除ul标签的默认样式 */
-            width: 80%;
-            list-style-type: none;
-            margin: 0;            
-            padding: 0;
-            overflow: hidden;
-
-        }
-        .top li {    
-            float:left; /* 使li内容横向浮动，即横向排列  */
-            margin-right:50px;  /* 两个li之间的距离*/
-        }
-
-        .top li a{
-           /* 设置链接内容显示的格式*/
-            display: block; /* 把链接显示为块元素可使整个链接区域可点击 */
-            color:white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none; /* 去除下划线 */
-        }
-        .top li a:hover{
-            /* 鼠标选中时背景变为黑色 */
-            background-color: #111;
-        }
-        .top ul li ul{
-            /* 设置二级菜单 */
-            width: auto;
-            background:rgb(189, 181, 181);
-            position: absolute;
-            display: none; /* 默认隐藏二级菜单的内容 */
-
-        }
-        .top ul li ul li{
-            /* 二级菜单li内容的显示 */
-            margin-right:0;
-            float:none;
-            text-align: center;
-        }
-        .top ul li:hover ul{
-            /* 鼠标选中二级菜单内容时 */
-            display: block;
-        }
-</style>

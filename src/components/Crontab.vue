@@ -1,19 +1,23 @@
 <template>
   <div id='app'>
-    <select v-model="Cabinet" @change="changeHost" class='cabinet'>
-      <option disabled value="">请选择</option>
-      <option v-for="cabinet in cabinets" :value="cabinet">{{cabinet}}</option>
-    </select>
-
-    <select v-model="Host" @change="changeUser" class="host">
-      <option disabled value="">请选择</option>
-      <option v-for="host in hosts" :value="host">{{host}}</option>
-    </select>
-
-    <select v-model="User" @change="listCron" class='user'>
-      <option disabled value="">请选择</option>
-      <option v-for="user in users" :value="user">{{user}}</option>
-    </select>
+   <el-select v-model="Cabinet" clearable placeholder="请选择" @change="changeHost">
+    <el-option
+      v-for="cabinet in cabinets"
+      :value="cabinet">
+    </el-option>
+  </el-select>
+   <el-select v-model="Host" clearable placeholder="请选择" @change="changeUser">
+    <el-option
+      v-for="host in hosts"
+      :value="host">
+    </el-option>
+  </el-select>
+  <el-select v-model="User" clearable placeholder="请选择" @change="listCron">
+    <el-option
+      v-for="user in users"
+      :value="User">
+    </el-option>
+  </el-select>
     <div>
         <ul>
             <li v-for="cron in crons">{{cron}}</li>
@@ -31,7 +35,10 @@ export default {
             cabinets: null,
             hosts: null,
             users: null,
-            crons: null
+            crons: null,
+            Host: null,
+            Cabinet: null,
+            User: null
         }
     },
     methods:{

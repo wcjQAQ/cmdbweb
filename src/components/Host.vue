@@ -1,13 +1,17 @@
 <template>
   <div id='Host'>
-    <select v-model="Cabinet" @change="changeHost" class="cabinet">
-      <option disabled value="">请选择</option>
-      <option v-for="cabinet in cabinets" :value="cabinet">{{cabinet}}</option>
-    </select>
-    <select v-model="Host" @change="getInfo" class="host">
-      <option disabled value="">请选择</option>
-      <option v-for="host in hosts" :value="host">{{host}}</option>
-    </select>
+   <el-select v-model="Cabinet" clearable placeholder="请选择" @change="changeHost">
+    <el-option
+      v-for="cabinet in cabinets"
+      :value="cabinet">
+    </el-option>
+  </el-select>
+   <el-select v-model="Host" clearable placeholder="请选择" @change="getInfo">
+    <el-option
+      v-for="host in hosts"
+      :value="host">
+    </el-option>
+  </el-select>
     <p>{{ info}}</p>
   </div>
 </template>
@@ -21,7 +25,9 @@ export default {
         return {
             cabinets: null,
             hosts: null,
-            info: null
+            info: null,
+            Host: null,
+            Cabinet: null
         }
     },
     methods:{
