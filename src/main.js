@@ -1,22 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router';
+// import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
 
 //一级路由
-// import Header from './components/Header'
 import Crontab from './components/Crontab'
+import Hosts from './components/Host'
 
 
 // 二级路由
-// import Cabinet from './components/crontab/Cabinet'
-// import Users from './components/crontab/Users'
-// import Hosts from './components/crontab/Hosts'
 
 Vue.use(VueRouter)
+// Vue.use(ElementUI)
 
 const routes = [
-  // {path:"/",component:Header},
-  {path:"/crontab",component:Crontab}
+  {path:"/crontab",component:Crontab},
+  {path:"/hosts", component:Hosts}
 ]
 
 const router = new VueRouter({
