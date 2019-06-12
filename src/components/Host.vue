@@ -1,80 +1,53 @@
 <template>
-  <div id='Host'>
-   <el-select v-model="Cabinet" clearable placeholder="请选择" @change="changeHost">
-    <el-option
-      v-for="cabinet in cabinets"
-      :value="cabinet">
-    </el-option>
-  </el-select>
-   <el-select v-model="Host" clearable placeholder="请选择" @change="getInfo">
-    <el-option
-      v-for="host in hosts"
-      :value="host">
-    </el-option>
-  </el-select>
-    <p>{{ info}}</p>
-  </div>
+  <el-container style="height: 500px; border: 1px solid #eee">
+    <el-header style="text-align: right; font-size: 12px">
+      <el-dropdown>
+        <i class="el-icon-setting" style="margin-right: 15px"></i>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>删除</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </el-header>
+    
+    <el-main>
+      <el-table :data="tableData">
+        <el-table-column prop="date" label="日期" width="140">
+        </el-table-column>
+        <el-table-column prop="name" label="姓名" width="120">
+        </el-table-column>
+        <el-table-column prop="address" label="地址">
+        </el-table-column>
+      </el-table>
+    </el-main>
+  </el-container>
 </template>
 
 
 <script>
 import axios from 'axios'
-export default {
-    name: 'Host',
-    data(){
-        return {
-            cabinets: null,
-            hosts: null,
-            info: null,
-            Host: null,
-            Cabinet: null
-        }
-    },
-    methods:{
-        listCabinets(){
-            axios
-            .get('http://127.0.0.1:5000/api/show/cabinet')
-            .then(response => (this.cabinets = response.data))
-        },
-        changeHost(e){
-            // console.log(e.target.value);
-            // console.log(this.User,this.Host,"========")
-            if(this.cabinets){
-              axios
-              .get('http://127.0.0.1:5000/api/show/' + this.Cabinet)
-              .then(response => (this.hosts = response.data))
-            }
-        },
-        getInfo(){
-            if(this.cabinets&&this.hosts){
-                axios
-                .get('http://127.0.0.1:5000/api/show/' + this.Cabinet + '/' + this.Host + '/info' )
-                .then(response => (this.info = response.data))
-            }
-        }
-
-    },
-    mounted() {
-        this.listCabinets()
+  export default {
+    data() {
+      const item = {
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      };
+      return {
+        tableData: Array(20).fill(item)
+      }
     }
-}
+  };
 </script>
 
 
 <style scope>
-.cabinet {
-position:absolute;
-left:12px;
-top:59px
-}
-.host {
-position:absolute;
-left:100px;
-top:59px
-}
-p{
-position:absolute;
-left:150px;
-top:200px  
-}
+  .el-header {
+    background-color: #B3C0D1;
+    color: #333;
+    line-height: 60px;
+  }
+  
+  .el-aside {
+    color: #333;
+  }
 </style>
