@@ -1,19 +1,20 @@
 <template>
-  <div id="app">
-    <div>
-      <appHeader></appHeader>
-    </div>
-  </div>
+<div>
+  <Home></Home>
+    <!-- <router-view></router-view> -->
+</div>
 </template>
 
 <script>
-import Header from './components/Header';
+
+import Home from './components/home'
 export default {
   components:{
-    appHeader: Header
+   Home
   }
 }
 </script>
 
 <style>
+body {font-family: Tahoma, sans-serif; }
 </style>

@@ -14,10 +14,11 @@ import Hosts from './components/Host'
 
 Vue.use(VueRouter)
 Vue.use(ElementUI)
+// Vue.user(axios)
 
 const routes = [
-  {path:"/crontab",component:Crontab},
-  {path:"/hosts", component:Hosts}
+  {path:"/crontab", name:"crontab", component:Crontab},
+  {path:"/hosts", name:"hosts", component:Hosts}
 ]
 
 const router = new VueRouter({
